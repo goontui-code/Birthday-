@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "SiteContent": {
+      "title": "SiteContent",
+      "description": "General site content, like the note in the digital card.",
+      "type": "object",
+      "properties": {
+        "note": { "type": "string", "description": "The handwritten note content" },
+        "updatedAt": { "type": "timestamp" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["note"]
+    },
+    "GalleryPhoto": {
+      "title": "GalleryPhoto",
+      "description": "A photo file entry inside the love gallery.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "The cropped photo data URL" },
+        "caption": { "type": "string", "description": "The caption matching the photo" },
+        "rotation": { "type": "string", "description": "The CSS polaroid styling tilt rotation" },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["url"]
+    },
+    "PopMemory": {
+      "title": "PopMemory",
+      "description": "A digital pop-up polaroid memory card.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "The cropped photo data URL" },
+        "caption": { "type": "string", "description": "The caption matching the photo memory" },
+        "align": { "type": "string" },
+        "rotate": { "type": "integer" },
+        "margin": { "type": "string" },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["url"]
+    },
+    "CasualPhoto": {
+      "title": "CasualPhoto",
+      "description": "A featured slow-listening casual vibe slot picture.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "The cropped photo data URL" },
+        "caption": { "type": "string", "description": "Vibe details of the current slots" },
+        "updatedAt": { "type": "timestamp" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["url"]
+    }
+  },
+  "firestore": {
+    "content/{contentId}": {
+      "schema": { "$ref": "#/entities/SiteContent" },
+      "description": "Stores the dynamic note content"
+    },
+    "gallery_photos/{photoId}": {
+      "schema": { "$ref": "#/entities/GalleryPhoto" },
+      "description": "Photos inside core gallery"
+    },
+    "pop_memories/{memoryId}": {
+      "schema": { "$ref": "#/entities/PopMemory" },
+      "description": "Digital pop-up polaroid cards"
+    },
+    "casual_photos/{photoId}": {
+      "schema": { "$ref": "#/entities/CasualPhoto" },
+      "description": "Arijit highlights casual slot images"
+    }
+  }
+}

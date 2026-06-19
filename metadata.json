@@ -1,0 +1,6 @@
+{
+  "name": "Bestie Birthday Card",
+  "description": "Happy Birthday website for my girl best friend with photos and sweet messages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
