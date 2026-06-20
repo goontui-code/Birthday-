@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Hero } from './components/Hero';
 import { Messages } from './components/Messages';
@@ -14,8 +15,12 @@ import { Footer } from './components/Footer';
 import { SideRoses } from './components/SideRoses';
 import { ThemePicker } from './components/ThemePicker';
 import { WhatsAppWish } from './components/WhatsAppWish';
+import { HTMLCodeExporter } from './components/HTMLCodeExporter';
+import { Code, Eye } from 'lucide-react';
 
 export default function App() {
+  const [viewMode, setViewMode] = useState<'preview' | 'html'>('preview');
+
   return (
     <div className="min-h-screen bg-[var(--theme-bg-page)] text-[var(--theme-text-soft)] font-sans overflow-x-hidden selection:bg-[#ffccd5] relative transition-colors duration-500">
       <ClickHearts />
@@ -27,6 +32,8 @@ export default function App() {
       <div className="absolute bottom-20 left-10 md:left-20 w-5 h-5 border-2 border-[#ffc9c9] rounded-sm rotate-45 pointer-events-none opacity-40"></div>
 
       <div className="max-w-[1024px] mx-auto px-6 py-10 flex flex-col gap-8 relative z-10 min-h-screen">
+        {/* Toggle View Mode Bar (Hidden as requested) */}
+
         {/* Top Center Mahadev Blessing */}
         <motion.div
           initial={{ y: -60, opacity: 0 }}
@@ -61,24 +68,30 @@ export default function App() {
           </div>
         </motion.div>
 
-        <ThemePicker />
-        <Hero />
-        <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
-          <div className="md:col-span-7 flex flex-col h-full">
-            <Gallery />
-          </div>
-          <div className="md:col-span-5 flex flex-col h-full gap-6">
-            <Messages />
-            <WhatsAppWish />
-          </div>
-        </main>
-        <Badges />
-        <Countdown />
-        <BirthdayCake />
-        <DigitalCard />
-        <InstagramFeed />
-        <ArijitHighlights />
-        <PopImages />
+        {viewMode === 'html' ? (
+          <HTMLCodeExporter onBack={() => setViewMode('preview')} />
+        ) : (
+          <>
+            <ThemePicker />
+            <Hero />
+            <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
+              <div className="md:col-span-7 flex flex-col h-full">
+                <Gallery />
+              </div>
+              <div className="md:col-span-5 flex flex-col h-full gap-6">
+                <Messages />
+                <WhatsAppWish />
+              </div>
+            </main>
+            <Badges />
+            <Countdown />
+            <BirthdayCake />
+            <DigitalCard />
+            <InstagramFeed />
+            <ArijitHighlights />
+            <PopImages />
+          </>
+        )}
         <Footer />
       </div>
     </div>
